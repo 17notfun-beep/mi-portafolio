@@ -1,13 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { WebGLShader } from "@/components/ui/web-gl-shader";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 export function Hero() {
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const heroHeight = window.innerHeight;
+      const fade = Math.max(0.08, 1 - scrollY / heroHeight);
+      setOpacity(fade);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <WebGLShader />
+      <div style={{ opacity }} className="fixed inset-0 z-0">
+        <WebGLShader />
+      </div>
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6">
         <div className="relative border border-white/10 p-2 mx-auto">
@@ -27,9 +44,12 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-6 text-white text-center text-7xl font-extrabold tracking-tighter md:text-[clamp(2rem,8vw,7rem)]"
+              className="mb-6 text-white text-center text-7xl font-black tracking-tight md:text-[clamp(2rem,8vw,7rem)]"
             >
-              Design is Everything
+              Crea. Escala.{' '}
+              <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+                Vende.
+              </span>
             </motion.h1>
 
             <motion.p

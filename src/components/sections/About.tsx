@@ -43,11 +43,28 @@ export function About() {
 
           <div
             ref={right.ref}
-            className={`bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl h-80 flex items-center justify-center ${
+            className={`rounded-3xl h-80 ${
               right.isInView ? "animate-on-scroll-right" : "opacity-0"
             }`}
           >
-            <span className="text-8xl">👨‍💻</span>
+            <div className="grid grid-cols-3 gap-4 h-full p-4">
+              {[
+                { name: "React", color: "from-cyan-400 to-blue-500", icon: "⚛" },
+                { name: "Node.js", color: "from-green-400 to-green-600", icon: "⬡" },
+                { name: "JavaScript", color: "from-yellow-400 to-yellow-500", icon: "JS" },
+                { name: "Next.js", color: "from-gray-200 to-gray-400", icon: "▲" },
+                { name: "Tailwind", color: "from-sky-400 to-cyan-400", icon: "🌊" },
+                { name: "Vercel", color: "from-gray-100 to-gray-300", icon: "▽" },
+              ].map((tech) => (
+                <div
+                  key={tech.name}
+                  className={`bg-gradient-to-br ${tech.color} rounded-2xl flex flex-col items-center justify-center gap-2 hover:scale-105 transition-transform`}
+                >
+                  <span className="text-3xl font-bold text-white drop-shadow-lg">{tech.icon}</span>
+                  <span className="text-xs font-medium text-white/90">{tech.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

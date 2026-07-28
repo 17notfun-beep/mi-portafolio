@@ -22,7 +22,7 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="space-y-8">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
@@ -55,22 +55,23 @@ function ProjectCard({
         isInView ? "animate-on-scroll" : "opacity-0"
       }`}
     >
-      <div className="h-80 relative overflow-hidden">
+      <div className="h-[28rem] relative overflow-hidden">
         <Image
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+          className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
           <span className="text-white text-sm font-medium bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
             Ver sitio →
           </span>
         </div>
       </div>
       <div className="p-6">
-        <h3 className="font-semibold text-white mb-2">{project.title}</h3>
-        <p className="text-sm text-gray-400 mb-4">{project.description}</p>
+        <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
+        <p className="text-gray-400 mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((t) => (
             <span

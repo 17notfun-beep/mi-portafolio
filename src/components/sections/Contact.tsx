@@ -1,10 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { useInView } from "@/lib/useInView";
 
 export function Contact() {
   const title = useInView();
   const form = useInView();
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    const res = await fetch("https://formspree.io/f/mdaqbael", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(Object.fromEntries(new FormData(e.currentTarget))),
+    });
+
+    setStatus(res.ok ? "sent" : "error");
+  };
 
   return (
     <section id="contacto" className="py-20 px-6 bg-gray-900">
@@ -25,36 +40,56 @@ export function Contact() {
           ref={form.ref}
           className={form.isInView ? "animate-on-scroll" : "opacity-0"}
         >
-          <form className="space-y-5">
-            <div className="grid md:grid-cols-2 gap-5">
+          {status === "sent" ? (
+            <div className="text-center py-12">
+              <p className="text-2xl mb-2">✓</p>
+              <p className="text-white font-medium">Mensaje enviado</p>
+              <p className="text-gray-400 text-sm mt-1">Te respondo en menos de 24 horas</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre"
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                />
+              </div>
               <input
                 type="text"
-                placeholder="Nombre"
+                name="asunto"
+                placeholder="Asunto"
+                required
                 className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+              <textarea
+                name="mensaje"
+                placeholder="Contame sobre tu proyecto..."
+                rows={5}
+                required
+                className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent resize-none"
               />
-            </div>
-            <input
-              type="text"
-              placeholder="Asunto"
-              className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-            />
-            <textarea
-              placeholder="Contame sobre tu proyecto..."
-              rows={5}
-              className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent resize-none"
-            />
-            <button
-              type="submit"
-              className="w-full bg-white text-gray-900 py-3.5 rounded-xl font-medium hover:bg-gray-100 transition-colors"
-            >
-              Enviar mensaje
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="w-full bg-white text-gray-900 py-3.5 rounded-xl font-medium hover:bg-gray-100 transition-colors disabled:opacity-50"
+              >
+                {status === "sending" ? "Enviando..." : "Enviar mensaje"}
+              </button>
+              {status === "error" && (
+                <p className="text-red-400 text-sm text-center">Hubo un error, intentá de nuevo</p>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </section>
