@@ -35,9 +35,14 @@ export function Services() {
 function ServiceCard({
   service,
 }: {
-  service: { title: string; description: string; icon: string };
+  service: {
+    title: string;
+    description: string;
+    icon: React.ComponentType<{ className?: string }>;
+  };
 }) {
   const { ref, isInView } = useInView();
+  const Icon = service.icon;
 
   return (
     <div
@@ -46,7 +51,9 @@ function ServiceCard({
         isInView ? "animate-on-scroll" : "opacity-0"
       }`}
     >
-      <div className="text-3xl mb-4">{service.icon}</div>
+      <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
+        <Icon className="w-6 h-6 text-emerald-400" />
+      </div>
       <h3 className="font-semibold text-white mb-2">{service.title}</h3>
       <p className="text-sm text-gray-400">{service.description}</p>
     </div>
