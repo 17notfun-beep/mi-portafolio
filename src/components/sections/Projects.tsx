@@ -58,7 +58,7 @@ function ProjectCard({
       <div className="h-[28rem] relative overflow-hidden">
         <Image
           src={project.image}
-          alt={project.title}
+          alt={`Vista previa del sitio web de ${project.title}`}
           fill
           className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />

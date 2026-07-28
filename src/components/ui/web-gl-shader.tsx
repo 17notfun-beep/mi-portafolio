@@ -5,6 +5,7 @@ import * as THREE from "three"
 
 export function WebGLShader() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const mouseRef = useRef({ x: 0.5, y: 0.5 })
   const sceneRef = useRef<{
     scene: THREE.Scene | null
     camera: THREE.OrthographicCamera | null
@@ -41,19 +42,25 @@ export function WebGLShader() {
       uniform float xScale;
       uniform float yScale;
       uniform float distortion;
+      uniform vec2 mouse;
 
       void main() {
         vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / min(resolution.x, resolution.y);
         
-        float d = length(p) * distortion;
+        vec2 m = (mouse * 2.0 - 1.0);
+        float mouseDist = length(p - m);
+        float mouseInfluence = smoothstep(0.8, 0.0, mouseDist) * 0.3;
+        
+        float d = length(p) * distortion + mouseInfluence;
         
         float rx = p.x * (1.0 + d);
         float gx = p.x;
         float bx = p.x * (1.0 - d);
 
-        float r = 0.025 / abs(p.y + sin((rx + time) * xScale) * yScale);
-        float g = 0.025 / abs(p.y + sin((gx + time) * xScale) * yScale);
-        float b = 0.025 / abs(p.y + sin((bx + time) * xScale) * yScale);
+        float intensity = 0.012;
+        float r = intensity / abs(p.y + sin((rx + time) * xScale) * (yScale + mouseInfluence * 0.5));
+        float g = intensity / abs(p.y + sin((gx + time) * xScale) * (yScale + mouseInfluence * 0.3));
+        float b = intensity / abs(p.y + sin((bx + time) * xScale) * (yScale + mouseInfluence * 0.7));
         
         gl_FragColor = vec4(r, g, b, 1.0);
       }
@@ -70,9 +77,10 @@ export function WebGLShader() {
       refs.uniforms = {
         resolution: { value: [window.innerWidth, window.innerHeight] },
         time: { value: 0.0 },
-        xScale: { value: 1.0 },
-        yScale: { value: 0.5 },
-        distortion: { value: 0.05 },
+        xScale: { value: 0.8 },
+        yScale: { value: 0.7 },
+        distortion: { value: 0.06 },
+        mouse: { value: [0.5, 0.5] },
       }
 
       const position = [
@@ -102,7 +110,13 @@ export function WebGLShader() {
     }
 
     const animate = () => {
-      if (refs.uniforms) refs.uniforms.time.value += 0.004
+      if (refs.uniforms) {
+        refs.uniforms.time.value += 0.004
+        refs.uniforms.mouse.value = [
+          refs.uniforms.mouse.value[0] + (mouseRef.current.x - refs.uniforms.mouse.value[0]) * 0.05,
+          refs.uniforms.mouse.value[1] + (mouseRef.current.y - refs.uniforms.mouse.value[1]) * 0.05,
+        ]
+      }
       if (refs.renderer && refs.scene && refs.camera) {
         refs.renderer.render(refs.scene, refs.camera)
       }
@@ -117,13 +131,22 @@ export function WebGLShader() {
       refs.uniforms.resolution.value = [width, height]
     }
 
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = {
+        x: e.clientX / window.innerWidth,
+        y: 1.0 - e.clientY / window.innerHeight,
+      }
+    }
+
     initScene()
     animate()
     window.addEventListener("resize", handleResize)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
 
     return () => {
       if (refs.animationId) cancelAnimationFrame(refs.animationId)
       window.removeEventListener("resize", handleResize)
+      window.removeEventListener("mousemove", handleMouseMove)
       if (refs.mesh) {
         refs.scene?.remove(refs.mesh)
         refs.mesh.geometry.dispose()

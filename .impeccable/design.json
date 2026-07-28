@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-28T07:10:00.000Z",
+  "title": "Design System: Ezequiel Serer Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "background",
+        "displayName": "Near-Black Background",
+        "canonical": "#030712",
+        "tonalRamp": ["#030712", "#0a0f1a", "#111827", "#1f2937", "#374151", "#4b5563", "#6b7280", "#9ca3af"]
+      },
+      "foreground": {
+        "role": "foreground",
+        "displayName": "Off-White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#ffffff", "#fafafa", "#f5f5f5", "#e5e5e5", "#d4d4d4", "#a3a3a3", "#737373", "#525252"]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Dark Surface",
+        "canonical": "#171717",
+        "tonalRamp": ["#0a0a0a", "#171717", "#262626", "#404040", "#525252", "#737373", "#a3a3a3", "#d4d4d4"]
+      },
+      "emerald-accent": {
+        "role": "accent",
+        "displayName": "Emerald Green",
+        "canonical": "#34d399",
+        "tonalRamp": ["#064e3b", "#065f46", "#047857", "#059669", "#10b981", "#34d399", "#6ee7b7", "#a7f3d0"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only. Maximum visual impact." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles. Clear hierarchy without competing with display." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, descriptions, testimonial text." },
+      "label": { "displayName": "Label", "purpose": "Badges, chips, metadata, small UI text." }
+    },
+    "shadows": [
+      { "name": "whatsapp-rest", "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)", "purpose": "WhatsApp floating button at rest." },
+      { "name": "whatsapp-hover", "value": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)", "purpose": "WhatsApp floating button on hover." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for state transitions." },
+      { "name": "duration-scroll", "value": "0.6s", "purpose": "Scroll-triggered fade-in animations." },
+      { "name": "duration-hero", "value": "0.5s", "purpose": "Hero entrance staggered animations." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "White pill CTA button on dark backgrounds.",
+      "html": "<button class=\"ds-btn-primary\">Empezar mi proyecto</button>",
+      "css": ".ds-btn-primary { background: #fafafa; color: #030712; padding: 14px 32px; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s ease; } .ds-btn-primary:hover { background: #f5f5f5; } .ds-btn-primary:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Nav CTA Button",
+      "kind": "button",
+      "refersTo": "button-nav",
+      "description": "Compact white pill in the navigation bar.",
+      "html": "<button class=\"ds-btn-nav\">Contratar</button>",
+      "css": ".ds-btn-nav { background: #ffffff; color: #171717; padding: 8px 20px; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s ease; } .ds-btn-nav:hover { background: #f5f5f5; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Dark card with icon, title, and description for service items.",
+      "html": "<div class=\"ds-card-service\"><div class=\"ds-card-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#34d399\" stroke-width=\"2\"><path d=\"M13 2L3 14h9l-1 8 10-12h-9l1-8z\"/></svg></div><h3 class=\"ds-card-title\">Landing Pages</h3><p class=\"ds-card-desc\">Páginas de aterrizaje optimizadas para convertir.</p></div>",
+      "css": ".ds-card-service { background: #111827; padding: 1.5rem; border-radius: 1rem; border: 1px solid #1f2937; transition: border-color 0.2s ease; } .ds-card-service:hover { border-color: #374151; } .ds-card-icon { width: 48px; height: 48px; border-radius: 0.75rem; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; } .ds-card-title { font-weight: 600; color: #ffffff; margin-bottom: 0.5rem; } .ds-card-desc { font-size: 0.875rem; color: #9ca3af; }"
+    },
+    {
+      "name": "Testimonial Card",
+      "kind": "card",
+      "refersTo": "card-testimonial",
+      "description": "Dark card with stars, quote, and author for testimonials.",
+      "html": "<div class=\"ds-card-testimonial\"><div class=\"ds-stars\">★★★★★</div><p class=\"ds-quote\">&ldquo;Entendió perfectamente lo que necesitaba.&rdquo;</p><div class=\"ds-author\"><p class=\"ds-author-name\">Laura Gutiérrez</p><p class=\"ds-author-role\">Directora de FitPro Gym</p></div></div>",
+      "css": ".ds-card-testimonial { background: #111827; padding: 1.5rem; border-radius: 1rem; border: 1px solid #1f2937; } .ds-stars { color: #facc15; margin-bottom: 1rem; font-size: 0.875rem; } .ds-quote { color: #d1d5db; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem; } .ds-author-name { font-weight: 600; color: #ffffff; font-size: 0.875rem; } .ds-author-role { color: #6b7280; font-size: 0.75rem; }"
+    },
+    {
+      "name": "Form Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Dark input field with border and white focus ring.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Nombre\" />",
+      "css": ".ds-input { width: 100%; padding: 12px 16px; border-radius: 0.75rem; background: #030712; border: 1px solid #1f2937; color: #ffffff; font-size: 1rem; transition: box-shadow 0.2s ease, border-color 0.2s ease; } .ds-input::placeholder { color: #6b7280; } .ds-input:focus { outline: none; box-shadow: 0 0 0 2px #ffffff; border-color: transparent; }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "chip-tech",
+      "description": "Small gray pill for technology tags.",
+      "html": "<span class=\"ds-chip\">React</span>",
+      "css": ".ds-chip { background: #1f2937; color: #d1d5db; font-size: 0.75rem; padding: 4px 10px; border-radius: 9999px; }"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Fixed top navigation with blur backdrop.",
+      "html": "<nav class=\"ds-navbar\"><div class=\"ds-navbar-inner\"><span class=\"ds-navbar-brand\">Ezequiel Serer</span><div class=\"ds-navbar-links\"><a href=\"#sobre-mi\">Sobre mí</a><a href=\"#servicios\">Servicios</a></div><a href=\"#contacto\" class=\"ds-btn-nav\">Contratar</a></div></nav>",
+      "css": ".ds-navbar { position: fixed; top: 0; width: 100%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px); z-index: 50; border-bottom: 1px solid #1f2937; } .ds-navbar-inner { max-width: 1152px; margin: 0 auto; padding: 0 1.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; } .ds-navbar-brand { font-size: 1.25rem; font-weight: 700; color: #ffffff; } .ds-navbar-links { display: flex; gap: 2rem; } .ds-navbar-links a { font-size: 0.875rem; color: #9ca3af; text-decoration: none; transition: color 0.2s ease; } .ds-navbar-links a:hover { color: #ffffff; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Taller Digital",
+    "overview": "Un espacio que se siente como el estudio de un artesano tecnológico: limpio, preciso, sin ruido. El fondo oscuro casi negro funciona como un lienzo vacío donde cada elemento tiene intención. La paleta es mayormente monocromática con un único acento esmeralda que aparece solo cuando hay algo que destacar. La densidad es baja, las animaciones sutiles, y el scroll suave refuerza la sensación de un espacio construido con cuidado.",
+    "keyCharacteristics": [
+      "Fondo oscuro profundo con superficies en capas de gris",
+      "Acento esmeralda mínimo y estratégico",
+      "Tipografía Geist Sans limpia y legible",
+      "Componentes con bordes sutiles, sin sombras pesadas",
+      "Animaciones de scroll suaves y directionales",
+      "Efecto glass morphism en el botón principal del hero",
+      "Texto de acento en color sólido (emerald-400), sin gradientes"
+    ],
+    "rules": [
+      { "name": "The 10% Emerald Rule", "body": "El verde esmeralda nunca supera el 10% de cualquier pantalla. Su escasez es lo que le da poder.", "section": "colors" },
+      { "name": "The One-Weight Rule", "body": "Todo el sitio usa Geist Sans. La jerarquía se logra solo con peso y tamaño, nunca cambiando de familia tipográfica.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Las superficies son planas en reposo. Las sombras aparecen solo como respuesta a estado.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do mantener el acento esmeralda bajo el 10% de cualquier pantalla",
+      "Do usar bordes sutiles en lugar de sombras para definir superficies",
+      "Do animar solo con fade-in direccional en scroll",
+      "Do usar max-w-6xl como contenedor estándar para secciones",
+      "Do mantener Geist Sans como única familia tipográfica"
+    ],
+    "donts": [
+      "Don't agregar sombras a cards o contenedores —usar borde",
+      "Don't usar más de un color de acento además del esmeralda",
+      "Don't romper la consistencia de rounded-full en botones pill",
+      "Don't usar tipografía serif o decorativa",
+      "Don't animar elementos con bounce, elastic o spring",
+      "Don't nesting de cards dentro de cards",
+      "Don't usar gradientes en texto —usar color sólido"
+    ]
+  }
+}

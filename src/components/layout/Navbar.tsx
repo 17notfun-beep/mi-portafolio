@@ -11,26 +11,26 @@ export function Navbar() {
         <span className="text-xl font-bold text-white">Ezequiel Serer</span>
 
         <div className="hidden md:flex items-center gap-8 text-sm text-gray-400">
-          <a href="#sobre-mi" className="hover:text-white transition-colors">
+          <a href="#sobre-mi" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1">
             Sobre mí
           </a>
-          <a href="#servicios" className="hover:text-white transition-colors">
+          <a href="#servicios" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1">
             Servicios
           </a>
-          <a href="#proyectos" className="hover:text-white transition-colors">
+          <a href="#proyectos" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1">
             Proyectos
           </a>
-          <a href="#testimonios" className="hover:text-white transition-colors">
+          <a href="#testimonios" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1">
             Testimonios
           </a>
-          <a href="#contacto" className="hover:text-white transition-colors">
+          <a href="#contacto" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1">
             Contacto
           </a>
         </div>
 
         <a
           href="#contacto"
-          className="bg-white text-gray-900 px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors"
+          className="bg-white text-gray-900 px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
         >
           Contratar
         </a>

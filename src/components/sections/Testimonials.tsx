@@ -13,10 +13,10 @@ export function Testimonials() {
           ref={title.ref}
           className={title.isInView ? "animate-on-scroll" : "opacity-0"}
         >
-          <h2 className="text-3xl font-bold text-center text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
             Lo que dicen mis clientes
           </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-xl mx-auto">
+          <p className="text-gray-400 text-center mb-16 max-w-xl mx-auto text-lg">
             La satisfacción de mis clientes es mi mayor prioridad.
           </p>
         </div>
@@ -41,25 +41,25 @@ function TestimonialCard({
   return (
     <div
       ref={ref}
-      className={`bg-gray-900 p-6 rounded-2xl border border-gray-800 ${
+      className={`bg-gray-900 p-8 rounded-2xl border border-gray-800 ${
         isInView ? "animate-on-scroll" : "opacity-0"
       }`}
     >
-      <div className="flex gap-1 mb-4">
+      <div className="flex gap-1 mb-5">
         {[...Array(5)].map((_, j) => (
-          <span key={j} className="text-yellow-400">
+          <span key={j} className="text-yellow-400 text-lg">
             ★
           </span>
         ))}
       </div>
-      <p className="text-gray-300 text-sm leading-relaxed mb-6">
+      <p className="text-white text-base leading-relaxed mb-6">
         &ldquo;{testimonial.text}&rdquo;
       </p>
-      <div>
-        <p className="font-semibold text-white text-sm">
+      <div className="border-t border-gray-800 pt-4">
+        <p className="font-semibold text-white">
           {testimonial.name}
         </p>
-        <p className="text-gray-500 text-xs">{testimonial.role}</p>
+        <p className="text-emerald-400 text-sm">{testimonial.role}</p>
       </div>
     </div>
   );

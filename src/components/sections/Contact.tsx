@@ -28,10 +28,10 @@ export function Contact() {
           ref={title.ref}
           className={title.isInView ? "animate-on-scroll" : "opacity-0"}
         >
-          <h2 className="text-3xl font-bold text-center text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
             Contacto
           </h2>
-          <p className="text-gray-400 text-center mb-12">
+          <p className="text-gray-400 text-center mb-16 text-lg">
             Completá el formulario y te respondo en menos de 24 horas.
           </p>
         </div>
@@ -41,10 +41,10 @@ export function Contact() {
           className={form.isInView ? "animate-on-scroll" : "opacity-0"}
         >
           {status === "sent" ? (
-            <div className="text-center py-12">
-              <p className="text-2xl mb-2">✓</p>
-              <p className="text-white font-medium">Mensaje enviado</p>
-              <p className="text-gray-400 text-sm mt-1">Te respondo en menos de 24 horas</p>
+            <div className="text-center py-16">
+              <p className="text-4xl mb-3">✓</p>
+              <p className="text-white font-semibold text-xl">Mensaje enviado</p>
+              <p className="text-gray-400 mt-2">Te respondo en menos de 24 horas</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -53,6 +53,7 @@ export function Contact() {
                   type="text"
                   name="nombre"
                   placeholder="Nombre"
+                  aria-label="Nombre"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                 />
@@ -60,6 +61,7 @@ export function Contact() {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  aria-label="Email"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                 />
@@ -68,12 +70,14 @@ export function Contact() {
                 type="text"
                 name="asunto"
                 placeholder="Asunto"
+                aria-label="Asunto"
                 required
                 className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
               <textarea
                 name="mensaje"
                 placeholder="Contame sobre tu proyecto..."
+                aria-label="Mensaje"
                 rows={5}
                 required
                 className="w-full px-4 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent resize-none"
@@ -81,12 +85,13 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full bg-white text-gray-900 py-3.5 rounded-xl font-medium hover:bg-gray-100 transition-colors disabled:opacity-50"
+                aria-label={status === "sending" ? "Enviando mensaje" : "Enviar mensaje"}
+                className="w-full bg-emerald-500 text-white py-4 rounded-xl font-semibold text-lg hover:bg-emerald-400 transition-colors disabled:opacity-50"
               >
                 {status === "sending" ? "Enviando..." : "Enviar mensaje"}
               </button>
               {status === "error" && (
-                <p className="text-red-400 text-sm text-center">Hubo un error, intentá de nuevo</p>
+                <p className="text-red-400 text-sm text-center" role="alert">Hubo un error, intentá de nuevo</p>
               )}
             </form>
           )}

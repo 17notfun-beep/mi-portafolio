@@ -13,10 +13,10 @@ export function Services() {
           ref={title.ref}
           className={title.isInView ? "animate-on-scroll" : "opacity-0"}
         >
-          <h2 className="text-3xl font-bold text-center text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
             Servicios
           </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-xl mx-auto">
+          <p className="text-gray-400 text-center mb-16 max-w-xl mx-auto text-lg">
             Ofrezco soluciones completas para que tu negocio tenga la presencia
             digital que merece.
           </p>
@@ -47,15 +47,15 @@ function ServiceCard({
   return (
     <div
       ref={ref}
-      className={`bg-gray-900 p-6 rounded-2xl border border-gray-800 hover:border-gray-700 transition-colors ${
+      className={`bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-emerald-500/30 transition-all group ${
         isInView ? "animate-on-scroll" : "opacity-0"
       }`}
     >
-      <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
-        <Icon className="w-6 h-6 text-emerald-400" />
+      <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5 group-hover:bg-emerald-500/20 transition-colors">
+        <Icon className="w-7 h-7 text-emerald-400" />
       </div>
-      <h3 className="font-semibold text-white mb-2">{service.title}</h3>
-      <p className="text-sm text-gray-400">{service.description}</p>
+      <h3 className="text-lg font-semibold text-white mb-2">{service.title}</h3>
+      <p className="text-gray-400 leading-relaxed">{service.description}</p>
     </div>
   );
 }
