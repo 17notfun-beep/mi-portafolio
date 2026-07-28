@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tu Nombre - Desarrollador Web",
+  title: "Ezequiel Serer - Desarrollador Web",
   description: "Servicio de creación de páginas web profesionales. Diseño moderno, rápido y optimizado.",
 };
 

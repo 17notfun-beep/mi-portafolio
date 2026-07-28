@@ -6,37 +6,37 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+    <nav className="fixed top-0 w-full bg-gray-950/80 backdrop-blur-md z-50 border-b border-gray-800">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <span className="text-xl font-bold text-gray-900">TuNombre</span>
+        <span className="text-xl font-bold text-white">Ezequiel Serer</span>
 
-        <div className="hidden md:flex items-center gap-8 text-sm text-gray-600">
-          <a href="#sobre-mi" className="hover:text-gray-900 transition-colors">
+        <div className="hidden md:flex items-center gap-8 text-sm text-gray-400">
+          <a href="#sobre-mi" className="hover:text-white transition-colors">
             Sobre mí
           </a>
-          <a href="#servicios" className="hover:text-gray-900 transition-colors">
+          <a href="#servicios" className="hover:text-white transition-colors">
             Servicios
           </a>
-          <a href="#proyectos" className="hover:text-gray-900 transition-colors">
+          <a href="#proyectos" className="hover:text-white transition-colors">
             Proyectos
           </a>
-          <a href="#testimonios" className="hover:text-gray-900 transition-colors">
+          <a href="#testimonios" className="hover:text-white transition-colors">
             Testimonios
           </a>
-          <a href="#contacto" className="hover:text-gray-900 transition-colors">
+          <a href="#contacto" className="hover:text-white transition-colors">
             Contacto
           </a>
         </div>
 
         <a
           href="#contacto"
-          className="bg-gray-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-700 transition-colors"
+          className="bg-white text-gray-900 px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors"
         >
           Contratar
         </a>
 
         <button
-          className="md:hidden text-gray-900"
+          className="md:hidden text-white"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
@@ -51,20 +51,20 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
-          <a href="#sobre-mi" className="block text-sm text-gray-600 hover:text-gray-900" onClick={() => setMenuOpen(false)}>
+        <div className="md:hidden border-t border-gray-800 bg-gray-950 px-6 py-4 space-y-3">
+          <a href="#sobre-mi" className="block text-sm text-gray-400 hover:text-white" onClick={() => setMenuOpen(false)}>
             Sobre mí
           </a>
-          <a href="#servicios" className="block text-sm text-gray-600 hover:text-gray-900" onClick={() => setMenuOpen(false)}>
+          <a href="#servicios" className="block text-sm text-gray-400 hover:text-white" onClick={() => setMenuOpen(false)}>
             Servicios
           </a>
-          <a href="#proyectos" className="block text-sm text-gray-600 hover:text-gray-900" onClick={() => setMenuOpen(false)}>
+          <a href="#proyectos" className="block text-sm text-gray-400 hover:text-white" onClick={() => setMenuOpen(false)}>
             Proyectos
           </a>
-          <a href="#testimonios" className="block text-sm text-gray-600 hover:text-gray-900" onClick={() => setMenuOpen(false)}>
+          <a href="#testimonios" className="block text-sm text-gray-400 hover:text-white" onClick={() => setMenuOpen(false)}>
             Testimonios
           </a>
-          <a href="#contacto" className="block text-sm text-gray-600 hover:text-gray-900" onClick={() => setMenuOpen(false)}>
+          <a href="#contacto" className="block text-sm text-gray-400 hover:text-white" onClick={() => setMenuOpen(false)}>
             Contacto
           </a>
         </div>

@@ -1,16 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useInView } from "@/lib/useInView";
 
 export function Cta() {
+  const { ref, isInView } = useInView();
+
   return (
-    <section className="py-20 px-6 bg-gray-900">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="max-w-3xl mx-auto text-center"
+    <section className="py-20 px-6 bg-gray-950">
+      <div
+        ref={ref}
+        className={`max-w-3xl mx-auto text-center ${
+          isInView ? "animate-on-scroll" : "opacity-0"
+        }`}
       >
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
           ¿Tenés un proyecto en mente?
@@ -25,7 +26,7 @@ export function Cta() {
         >
           Solicitar presupuesto
         </a>
-      </motion.div>
+      </div>
     </section>
   );
 }
